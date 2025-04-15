@@ -1,4 +1,5 @@
-import { Routes, Route, Outlet, Link } from "react-router";
+import React from "react";
+import { Routes, Route, Outlet, Link, useParams } from "react-router";
 
 export default function App() {
   return (
@@ -17,11 +18,26 @@ export default function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="dashboard" element={<Dashboard />} />
+          <Route path="blogs" element={<BlogRoot />} >
+          </Route>
+          <Route path="blog/:id" element={<BlogPost />}></Route>
           <Route path="*" element={<NoMatch />} />
         </Route>
       </Routes>
     </div>
   );
+}
+
+const BlogRoot = () => {
+  return (<div>
+    <Link to="/blog/1">Post 1</Link>
+  </div>)
+}
+const BlogPost = () => {
+  const { id } = useParams();
+  return (<div>
+    <div>This is post : {id}</div>
+  </div>)
 }
 
 function Layout() {
@@ -39,6 +55,9 @@ function Layout() {
           </li>
           <li>
             <Link to="/dashboard">Dashboard (react router SPA navigation)</Link>
+          </li>
+          <li>
+            <Link to="/blogs">Blog</Link>
           </li>
           <li>
             <Link to="/nothing-here">Nothing Here (react router SPA navigation)</Link>
