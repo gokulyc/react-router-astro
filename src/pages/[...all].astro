@@ -1,5 +1,4 @@
 ---
-import { undefined } from "astro:schema";
 import App from "./index.astro";
 import type { GetStaticPaths } from "astro";
 
@@ -12,6 +11,7 @@ export const getStaticPaths = (async (obj) => {
 	return [
 		{ params: { all: "about" } },
 		{ params: { all: "dashboard" } },
+		// { params: { all: "blogs" }, props: { data: data?.data } },
 		{ params: { all: "blog/1" }, props: { data: data?.data } },
 	];
 }) satisfies GetStaticPaths;
